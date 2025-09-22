@@ -1,18 +1,46 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import User,Role
-from .serializers import UserSerializer,RoleSerializer
+from .serializers import UserSerializer,RoleSerializer,UserRegisterSerializer,RestaurantSerializer,RestaurantRegisterSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import generics
+from rest_framework import permissions
+from rest_framework.views import APIView
 
-@api_view(['GET'])
-def get_users(request):
-    user = User.objects.all()
-    serializer = UserSerializer(user,many = True)
-    return Response({'user':serializer.data})
+class UserRegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegisterSerializer
+    permission_classes = [permissions.AllowAny]
 
-@api_view(['GET'])
-def get_roles(request):
-    role = Role.objects.all()
-    serializer = RoleSerializer(role,many = True)
-    return Response({'role':serializer.data})
+class RestaurantRegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RestaurantRegisterSerializer
+    permission_classes = [permissions.AllowAny]
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+
+class UserDetailView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_url_kwarg = 'id'
+
+class RoleListView(generics.ListAPIView):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
+
+# @api_view(['GET'])
+# def get_users(request):
+#     user = User.objects.all()
+#     serializer = UserSerializer(user,many = True)
+#     return Response({'user':serializer.data})
+
+# @api_view(['GET'])
+# def get_roles(request):
+#     role = Role.objects.all()
+#     serializer = RoleSerializer(role,many = True)
+#     return Response({'role':serializer.data})

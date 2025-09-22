@@ -7,7 +7,7 @@ class DonationSerializer(serializers.ModelSerializer):
     
     def get_remaining_date(self,obj):
         if obj.expiry_date:
-            return  max((obj.expiry_date-timezone.now().date()).days,0)
+            return (timezone.now()-obj.expiry_date).days
         return None
     
     class Meta:

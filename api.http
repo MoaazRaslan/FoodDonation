@@ -1,0 +1,30 @@
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "m",
+    "password": "123"
+}
+###
+POST http://localhost:8000/user/register/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "emp1",
+    "password": "StrongPassword123!",
+    "password2": "StrongPassword123!",
+    "phone": "1234567890"
+}
+
+###
+POST http://localhost:8000/user/register/restaurant HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "emp1",
+    "password": "StrongPassword123!",
+    "password2": "StrongPassword123!",
+    "phone": 32,
+    "location":"Aleppo"
+}
+
