@@ -21,10 +21,34 @@ POST http://localhost:8000/user/register/restaurant HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "emp1",
-    "password": "StrongPassword123!",
-    "password2": "StrongPassword123!",
-    "phone": 32,
+    "username": "r",
+    "password": "123",
+    "password2": "123",
+    "phone": 33,
     "location":"Aleppo"
 }
 
+###
+POST http://localhost:8000/user/login/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "emp1",
+    "password": "StrongPassword1263!"
+}
+###
+POST http://localhost:8000/user/login/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "s",
+    "password": "123"
+}
+
+###
+GET http://localhost:8000/user HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4NTQ2NDk3LCJpYXQiOjE3NTg1NDYxOTcsImp0aSI6ImMwNDY5NWFlZTIwNTQ3NmI5OTdiOTYyYjRhZDAxMTgxIiwidXNlcl9pZCI6IjQifQ.Fd5uWDQ_1rJk91SrMAWo9Dcqoi7zo1x62mfKnDnLAdA
+
+###
+PUT http://localhost:8000/user/trusted/5/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4NjU0MTIyLCJpYXQiOjE3NTg2NTM4MjIsImp0aSI6ImYyNmQyM2RkNGNlMjQ3YTViZmEyZTFkMmYxOGY4OGU4IiwidXNlcl9pZCI6IjUifQ._IbLMu_SA2jkVVcrGgeJ-jW50i6OagiJz6B9CNVGq40

@@ -77,8 +77,24 @@ class RoleSerializer(serializers.ModelSerializer):
     # users = UserSerializer(many = True)
     class Meta:
         model = Role
-        fields = (
-            'id',
-            'name',
-            'users',
-        )
+        fields = ('id','name','users',)
+
+class RestaurantTrusted(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','trusted')
+        read_only_fields = ["id"]
+
+
+    def update(self,instance,validate_data):
+        instance.trusted = True
+        instance.save()
+        return instance
+
+    # def create(self,validate_data):
+    #     user = User.objects.get(id = validate_data.get('id'))
+    #     if not user:
+    #         raise serializers.ValidationError({'user':"not found user"})
+    #     user.trusted = True
+    #     user.save()
+    #     return user
