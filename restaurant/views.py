@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Restaurant,Donation
-from .serializers import RestaurantSerializer , DonationSerializer
+from .models import Donation
+from .serializers import   DonationSerializer
 from rest_framework import generics
 from rest_framework.permissions import AllowAny,IsAuthenticated
 

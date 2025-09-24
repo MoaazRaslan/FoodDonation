@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Restaurant,Donation,DonationApproved
+from .models import Donation,DonationApproved
 from django.utils import timezone
 
 class DonationSerializer(serializers.ModelSerializer):
@@ -14,11 +14,11 @@ class DonationSerializer(serializers.ModelSerializer):
         model = Donation
         fields = '__all__'
 
-class RestaurantSerializer(serializers.ModelSerializer):
-    donations = DonationSerializer(many = True)
-    class Meta:
-        model = Restaurant
-        fields = ('name','donations',)
+# class RestaurantSerializer(serializers.ModelSerializer):
+#     donations = DonationSerializer(many = True)
+#     class Meta:
+#         model = Restaurant
+#         fields = ('name','donations',)
 
 class DonationApprovedSerializer(serializers.ModelSerializer):
     

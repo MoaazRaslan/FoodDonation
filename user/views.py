@@ -4,7 +4,7 @@ from .models import User,Role
 from .serializers import UserSerializer,RoleSerializer,UserRegisterSerializer,RestaurantSerializer,RestaurantRegisterSerializer,RestaurantTrusted
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics,status
 from rest_framework import permissions
 from rest_framework.views import APIView
 import custom_permissions
@@ -23,10 +23,31 @@ class UserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAdminUser]
     
-class RestuarantTrustedView(generics.UpdateAPIView):
+
+class EvaluatorPromotionView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [custom_permissions.IsSupervisor|permissions.IsAdminUser]
+    def update(self,request,*args,**kwargs):
+        user = self.get_object()
+        role = user.role
+        new_role = Role.objects.get(name = 'supervisor')
+        evaluator_role =Role.objects.get(name = 'evaluator')
+
+        if role == new_role :
+            return Response({"Role":"user is already a supervisor"},status=status.HTTP_400_BAD_REQUEST)
+        
+        if role != evaluator_role:
+            return Response({"Role":"user should be an evaulator"},status=status.HTTP_400_BAD_REQUEST)
+
+        user.role = new_role
+        user.save()
+        return Response(self.serializer_class(user).data,status=status.HTTP_200_OK)
+
+class UserTrustedView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = RestaurantTrusted
-    permission_classes = [custom_permissions.IsSupervisor]
+    permission_classes = [custom_permissions.IsSupervisor | permissions.IsAdminUser]
 
 
 
