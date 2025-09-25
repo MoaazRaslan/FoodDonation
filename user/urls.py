@@ -6,8 +6,8 @@ urlpatterns = [
     path('register/restaurant',views.RestaurantRegisterView.as_view(),name = 'register-restaurant'),
     path('login/',TokenObtainPairView.as_view(),name = 'login'),
     path('trusted/<pk>/',views.UserTrustedView.as_view(),name="restaurant-trusted"),
-    path('evaluator_promote/<pk>/',views.EvaluatorPromotionView.as_view(),name='evaulator-promote')
-    # path('',views.UserListView.as_view(),name='get_users'),
+    path('evaluator_promote/<pk>/',views.EvaluatorPromotionView.as_view(),name='evaulator-promote'),
+    path('',views.UserListView.as_view(),name='get_users'),
     # path('<id>/',views.UserDetailView.as_view()),
     # path('role/',views.RoleListView.as_view(),name='get_roles'),
 ]

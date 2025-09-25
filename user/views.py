@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import generics,status
 from rest_framework import permissions
 from rest_framework.views import APIView
-import custom_permissions
+from common import custom_filters,custom_permissions
 class UserRegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
@@ -21,8 +21,9 @@ class RestaurantRegisterView(generics.CreateAPIView):
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAdminUser]
-    
+    # permission_classes = [permissions.IsAdminUser]
+    filterset_class = custom_filters.UserFilter
+    # filterset_fields = ('phone',)    
 
 class EvaluatorPromotionView(generics.UpdateAPIView):
     queryset = User.objects.all()
