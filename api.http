@@ -2,7 +2,7 @@ POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "m",
+    "username": "r",
     "password": "123"
 }
 ###
@@ -13,7 +13,8 @@ Content-Type: application/json
     "username": "s",
     "password": "123",
     "password2": "123",
-    "phone": "1234567890"
+    "phone": "1234567890",
+    "city":1,
 }
 
 ###
@@ -41,7 +42,7 @@ POST http://localhost:8000/user/login/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "m",
+    "username": "r",
     "password": "123"
 }
 
@@ -61,3 +62,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 GET http://localhost:8000/user/?phone__gt=234 HTTP/1.1
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4NzY0NDU4LCJpYXQiOjE3NTg3NjQxNTgsImp0aSI6Ijc4OGU3MjNmNGVmZjQ5YWY5MWZiNGU2MWU0NzZhMTk5IiwidXNlcl9pZCI6IjEifQ.BLrm4v8RPdHZHYiDRQHcmaHxfHPfXXHjoMcpm2WjwcM
+
+
+
+
+###
+
+POST http://localhost:8000/rest/create/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4NzcwMjEzLCJpYXQiOjE3NTg3Njk5MTMsImp0aSI6IjFjMzM5NWNhMWQxNzQyNDE4NDg0ZmU4OTgwZWVlY2YzIiwidXNlcl9pZCI6IjMifQ.NFPLKHTvJuRI5tJqJVqUA5MprgQnbtymceB3lV2Xy8M
+Content-Type: application/json
+
+{
+  "created_at": "2025-09-25",
+  "expiry_date": "2025-10-25",
+  "note": "chicken"
+}
+
+###
+GET http://localhost:8000/rest/list/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4NzczNjc5LCJpYXQiOjE3NTg3NzMzNzksImp0aSI6IjA0YTRlMTRhNWQ2YzRmMWQ4NWYzMDZiN2Y2ZGNiMzU1IiwidXNlcl9pZCI6IjMifQ.UqbjUQ8LcBbFTwV0aamGzA4kQavxzHd2XfWQQLB33y8
+
+
+###
+GET http://localhost:8000/user/list_restaurant/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4Nzc0MDc0LCJpYXQiOjE3NTg3NzM3NzQsImp0aSI6ImUwOTA1OTQxOThkODQ2NjViMmIzZThhMzQ1NmQzY2IzIiwidXNlcl9pZCI6IjMifQ.23GSZuXBYU9Id309cdGxAGnJBn5h82HD5y20HE5JQeE
+
+###
+GET http://localhost:8000/user/user_profile/2 HTTP/1.1

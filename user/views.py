@@ -50,17 +50,21 @@ class UserTrustedView(generics.UpdateAPIView):
     serializer_class = RestaurantTrusted
     permission_classes = [custom_permissions.IsSupervisor | permissions.IsAdminUser]
 
+class RestaurantListView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [custom_permissions.IsSupervisor]
 
-
-
-
-
-
+    def get_queryset(self):
+        return User.objects.filter(role = Role.objects.get(name = 'restaurant'))
 
 class UserDetailView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    lookup_url_kwarg = 'id'
+
+
+
+
+
 
 class RoleListView(generics.ListAPIView):
     queryset = Role.objects.all()

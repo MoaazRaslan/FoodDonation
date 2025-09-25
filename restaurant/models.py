@@ -9,11 +9,11 @@ class Donation(models.Model):
         ('processing','Processing'),
         ('finish','Finish')
     )
-    status = models.CharField(max_length=30,choices=PROCESSING_CHOICES)
+    status = models.CharField(max_length=30,choices=PROCESSING_CHOICES,default='queue')
     created_at = models.DateField(blank=False)
     expiry_date = models.DateField(blank=False)
     note = models.TextField(null=True)
-    restaurant = models.ForeignKey(User,on_delete=models.PROTECT,related_name='donations')
+    user = models.ForeignKey(User,on_delete=models.PROTECT,related_name='donations')
 
 
 class DonationApproved(models.Model):

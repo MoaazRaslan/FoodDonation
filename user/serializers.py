@@ -9,7 +9,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id','username','password','password2','phone')
+        fields = ('id','username','password','password2','phone','city')
 
     def validate(self, attrs):
         if attrs['password'] != attrs ['password2']:
@@ -37,7 +37,7 @@ class RestaurantRegisterSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id','username','password','password2','phone','location')
+        fields = ('id','username','password','password2','phone','location','city')
 
     def validate(self, attrs):
         if attrs['password'] != attrs ['password2']:
@@ -64,13 +64,13 @@ class RestaurantRegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','username','phone','role')
+        fields = ('id','username','phone','role','city')
     
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','username','phone','location','role')
+        fields = ('id','username','phone','location','role','city')
 
 
 class RoleSerializer(serializers.ModelSerializer):
