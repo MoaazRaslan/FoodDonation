@@ -19,4 +19,14 @@ class IsRestaurant(permissions.BasePermission):
             and request.user.role.name == 'restaurant'
             and request.user.trusted == True
         )
+
+class IsEvaluator(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        return (
+            request.user 
+            and request.user.is_authenticated
+            and request.user.role.name == 'evaluator'
+            and request.user.trusted == True
+        )
     

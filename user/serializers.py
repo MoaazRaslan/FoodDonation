@@ -19,14 +19,14 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         if phone_num and not phone_num.isdigit():
             raise serializers.ValidationError({"phone":"phone must be numbers"})     
         
-        return super().validate(attrs)
+        return attrs
 
-    def create(self,validate_data):
-        validate_data.pop('password2')
+    def create(self,validated_data):
+        validated_data.pop('password2')
         role = Role.objects.get(name = 'evaluator')
         print(role)
         print("********************************************************")
-        user = User.objects.create_user(**validate_data,role = role)
+        user = User.objects.create_user(**validated_data,role = role)
         return user
 
 
@@ -51,12 +51,12 @@ class RestaurantRegisterSerializer(serializers.ModelSerializer):
         if phone_num and not phone_num.isdigit():
             raise serializers.ValidationError({"phone":"phone must be numbers"})     
         
-        return super().validate(attrs)
+        return attrs
 
-    def create(self,validate_data):
-        validate_data.pop('password2')
+    def create(self,validated_data):
+        validated_data.pop('password2')
         role = Role.objects.get(name = 'restaurant')
-        user = User.objects.create_user(**validate_data,role = role)
+        user = User.objects.create_user(**validatedS_data,role = role)
         return user
 
 

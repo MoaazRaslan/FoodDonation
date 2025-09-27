@@ -42,7 +42,7 @@ POST http://localhost:8000/user/login/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "r",
+    "username": "s",
     "password": "123"
 }
 
@@ -89,3 +89,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###
 GET http://localhost:8000/user/user_profile/2 HTTP/1.1
+
+###
+GET http://127.0.0.1:8000/rest/donation/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4ODQ5Njk4LCJpYXQiOjE3NTg4NDkzOTgsImp0aSI6ImZmYjQ1YTVhYTZkZDQ1Mzg5YTE5NDQ0ZGI4ODU4ZjhhIiwidXNlcl9pZCI6IjMifQ.n6mnnhNY6aiXTynO9JV5oQCc_nUAwcXu4fkw8GwjMcc
+
+###
+GET http://127.0.0.1:8000/rest/donation_supervisor/?status=queue HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4OTcyNDk0LCJpYXQiOjE3NTg5NzIxOTUsImp0aSI6IjJjNjMwNmVhZGIzYjRkMGY4M2Q1NWExMzEwYTY0NGU2IiwidXNlcl9pZCI6IjQifQ.b1suaw5qXnUu9H2CEmXE9NLoM3BwtvGLvvMJMb6nb3c
+
+###
+
+POST http://127.0.0.1:8000/rest/donation_approved_create/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU4OTg3MDY1LCJpYXQiOjE3NTg5ODY3NjUsImp0aSI6IjI2MmEwYzQwYTc3NDRiMDk5MDc0NGYzZWE4ZjBhZDJlIiwidXNlcl9pZCI6IjQifQ.YKUf-ICBxkSJlaHPUUsh9e92qPJCp26KevPwR5NuCDM
+Content-Type: application/json
+
+{
+    "donation":16,
+    "user":2,
+    "note": "ggggg"
+}
