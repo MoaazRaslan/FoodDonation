@@ -7,6 +7,10 @@ from rest_framework import generics
 from rest_framework import permissions 
 from common import custom_permissions
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
+
 class DonationCreateView(generics.CreateAPIView):
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
@@ -35,7 +39,15 @@ class DonationSupervisorListView(generics.ListAPIView):
     serializer_class = DonationSerializer
     permission_classes = [custom_permissions.IsSupervisor]
     filterset_fields = ('status',)
+
+    @method_decorator(cache_page(60*15,key_prefix='donation_list'))
+    @method_decorator(vary_on_headers("Authorization"))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
     def get_queryset(self):
+        import time
+        time.sleep(2)
         return Donation.objects.filter(user__city = self.request.user.city)
 
 class DonationApprovedCreateView(generics.CreateAPIView):
