@@ -5,6 +5,7 @@ from django.core.cache import cache
 
 @receiver([post_save,post_delete],sender = Donation)
 def delete_donation_cache(sender,instance,**kwargs):
+    print('deleteeeeeeeeeed')
     cache.delete_pattern('*donation_list*')
 
 
